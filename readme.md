@@ -5,6 +5,7 @@
 <img src="images/16led-top.jpg" width="240px">
 
 This PMOD provides a sixteen LED display output to FPGA designs via two double-row PMODs.
+[fpga.fm4dd.com](http://fpga.fm4dd.com)
 
 ### Schematic
 
