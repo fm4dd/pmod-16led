@@ -17,49 +17,48 @@ This PMOD provides a sixteen LED display output to FPGA designs via two double-r
  J1# |  Label | Description   | PMOD1A
 -----|--------|---------------|-------
 1    |  D1    | LED D1        | 4
-7    |  D2    | LED D2        | 2
-2    |  D3    | LED D3        | 47
-8    |  D4    | LED D4        | 45
-3    |  D5    | LED D5        | 3
-9    |  D6    | LED D6        | 48
-4    |  D7    | LED D7        | 46
+7    |  D2    | LED D2        | 3
+2    |  D3    | LED D3        | 2
+8    |  D4    | LED D4        | 48
+3    |  D5    | LED D5        | 47
+9    |  D6    | LED D6        | 46
+4    |  D7    | LED D7        | 45
 10   |  D8    | LED D8        | 44
 
  J2# |  Label | Description   | PMOD1B
 -----|--------|---------------|-------
 1    |  D9    | LED D9        | 43
-7    |  D10   | LED D10       | 38
-2    |  D11   | LED D11       | 34
-8    |  D12   | LED D12       | 31
-3    |  D13   | LED D13       | 42
-9    |  D14   | LED D14       | 36
-4    |  D15   | LED D15       | 32
+7    |  D10   | LED D10       | 42
+2    |  D11   | LED D11       | 38
+8    |  D12   | LED D12       | 36
+3    |  D13   | LED D13       | 44
+9    |  D14   | LED D14       | 32
+4    |  D15   | LED D15       | 31
 10   |  D16   | LED D16       | 28
-
 
 #### DE0-Nano-SoC
 
  J1# |  Label | Description   | GPIO0A | GPIO1A
 -----|--------|---------------|--------|--------
-1    |  D1    | LED D1 green  | PIN_W12|PIN_AA15
-2    |  D2    | LED D2 green  | PIN_Y8 |PIN_AG26
-3    |  D3    | LED D3 green  | PIN_W8 |PIN_AF23
-4    |  D4    | LED D4 green  | PIN_Y5 |PIN_AF21
-5    |  D5    | LED D5 green  | PIN_AF8|PIN_AH27
-6    |  D6    | LED D6 green  | PIN_AB4|PIN_AH24
-7    |  D7    | LED D7 green  | PIN_Y4 |PIN_AE22
-8    |  D8    | LED D8 green  | PIN_U11|PIN_AG20
+1    |  D1    | LED D1        | PIN_W12|PIN_AA15
+7    |  D2    | LED D2        | PIN_AF8|PIN_AH27
+2    |  D3    | LED D3        | PIN_Y8 |PIN_AG26
+8    |  D4    | LED D4        | PIN_AB4|PIN_AH24
+3    |  D5    | LED D5        | PIN_W8 |PIN_AF23
+9    |  D6    | LED D6        | PIN_Y4 |PIN_AE22
+4    |  D7    | LED D7        | PIN_Y5 |PIN_AF21
+10   |  D8    | LED D8        | PIN_U11|PIN_AG20
 
  J2# |  Label | Description   | GPIO0B | GPIO1B
 -----|--------|---------------|--------|--------
-1    |  D1    | LED D1 red    | PIN_AF4| PIN_AH23
-2    |  D2    | LED D2 red    | PIN_AF5| PIN_AE19
-3    |  D3    | LED D3 red    | PIN_T13| PIN_AD19
-4    |  D4    | LED D4 red    | PIN_AE7| PIN_AE24
-5    |  D5    | LED D5 red    | PIN_AG6| PIN_AG23
-6    |  D6    | LED D6 red    | PIN_AE4| PIN_AF18
-7    |  D7    | LED D7 red    | PIN_T11| PIN_AE20
-8    |  D8    | LED D8 red    | PIN_AF6| PIN_AD20
+1    |  D9    | LED D9        | PIN_AF4| PIN_AH23
+7    |  D10   | LED D10       | PIN_AF5| PIN_AG23
+2    |  D11   | LED D11       | PIN_T13| PIN_AE19
+8    |  D12   | LED D12       | PIN_AE7| PIN_AF18
+3    |  D13   | LED D13       | PIN_AG6| PIN_AD19
+9    |  D14   | LED D14       | PIN_AE4| PIN_AE20
+4    |  D15   | LED D15       | PIN_T11| PIN_AE24
+10   |  D16   | LED D16       | PIN_AF6| PIN_AD20
 
 ### Example Code
 
@@ -68,42 +67,26 @@ This PMOD provides a sixteen LED display output to FPGA designs via two double-r
 Verilog test program pmod16led_1.v (top-level):
 ```
 // -------------------------------------------------------
-// This program tests HW pin assignment, and lights up D1
+// This program is a binary counter displayed on the
+// on the pmod D2-8, and 9-16. D1 is pulsing 1Hz clock.
+// 12MHz clock: set breakpoint at 23'd5999999
+// 50MHz clock: set breakpoint at 25'd24999999
 // -------------------------------------------------------
 module pmod16led_1 (
-  output [0:7] pmodledr
-);
-
-  reg led;
-  assign pmodledr[7] = led;
-
-  always
-  begin
-    led = 1'b1;  // light up D1
-  end
-endmodule
-```
-
-Verilog test program pmod16led_2.v (top-level):
-```
-// -------------------------------------------------------
-// This program is a binary counter, displayed on the pmod
-// LED D2-8 green color. The 1Hz clock pulse is on D1 red.
-// 12MHz clock: set breakpoint at 23'd5999999 (icebreaker)
-// 50MHz clock: set breakpoint at 25'd24999999 (de0-nano)
-// -------------------------------------------------------
-module pmod16led_2 (
   input clk,
-  output reg [0:7] pmodledg,
-  output reg [0:7] pmodledr
+  output reg [0:7] pmodled1,
+  output reg [0:7] pmodled2,
 );
 
-  reg clk_1hz = 1'b0;
   reg [22:0] count = 23'd0;
-  reg [6:0] lednum = 7'd0;
-  assign [1:7] pmodledg = lednum;
-  assign [1:7] pmodledr = 7'b0000000;
-  assign pmodledr[0] = clk_1hz;
+  reg clk_1hz = 1'b0;
+  assign pmodled1[0] = clk_1hz;
+
+  reg [6:0] lednum1 = 7'd0;
+  assign pmodled1[7:1] = lednum1;
+
+  reg [7:0] lednum2 = 8'd0;
+  assign pmodled2[7:0] = lednum2;
 
   always @(posedge clk)
   begin
@@ -112,7 +95,8 @@ module pmod16led_2 (
     begin
       count   <= 0;
       clk_1hz <= ~clk_1hz;
-      lednum  <= lednum + 1;
+      lednum1 <= lednum1 + 1;
+      lednum2 <= lednum2 + 1;
     end
   end
 endmodule
