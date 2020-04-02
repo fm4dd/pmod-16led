@@ -41,25 +41,25 @@ This PMOD provides a sixteen LED display output to FPGA designs via two double-r
 
  J1# |  Label | Description   | GPIO0A | GPIO1A
 -----|--------|---------------|--------|--------
-1    |  D1    | LED D1        | PIN_W12|PIN_AA15
-7    |  D2    | LED D2        | PIN_AF8|PIN_AH27
-2    |  D3    | LED D3        | PIN_Y8 |PIN_AG26
-8    |  D4    | LED D4        | PIN_AB4|PIN_AH24
-3    |  D5    | LED D5        | PIN_W8 |PIN_AF23
-9    |  D6    | LED D6        | PIN_Y4 |PIN_AE22
-4    |  D7    | LED D7        | PIN_Y5 |PIN_AF21
-10   |  D8    | LED D8        | PIN_U11|PIN_AG20
+1    |  D2    | LED D1        | PIN_AF8|PIN_AH27
+2    |  D1    | LED D2        | PIN_W12|PIN_AA15
+3    |  D4    | LED D3        | PIN_AB4|PIN_AH24
+4    |  D3    | LED D4        | PIN_Y8 |PIN_AG26
+7    |  D6    | LED D5        | PIN_Y4 |PIN_AE22
+8    |  D5    | LED D6        | PIN_W8 |PIN_AF23
+9    |  D8    | LED D7        | PIN_U11|PIN_AG20
+10   |  D7    | LED D8        | PIN_Y5 |PIN_AF21
 
  J2# |  Label | Description   | GPIO0B | GPIO1B
 -----|--------|---------------|--------|--------
-1    |  D9    | LED D9        | PIN_AF4| PIN_AH23
-7    |  D10   | LED D10       | PIN_AF5| PIN_AG23
-2    |  D11   | LED D11       | PIN_T13| PIN_AE19
-8    |  D12   | LED D12       | PIN_AE7| PIN_AF18
-3    |  D13   | LED D13       | PIN_AG6| PIN_AD19
-9    |  D14   | LED D14       | PIN_AE4| PIN_AE20
-4    |  D15   | LED D15       | PIN_T11| PIN_AE24
-10   |  D16   | LED D16       | PIN_AF6| PIN_AD20
+1    |  D13   | LED D13       | PIN_AG6| PIN_AD19
+2    |  D9    | LED D9        | PIN_AF4| PIN_AH23
+3    |  D14   | LED D14       | PIN_AE4| PIN_AE20
+4    |  D10   | LED D10       | PIN_AF5| PIN_AG23
+7    |  D15   | LED D15       | PIN_T11| PIN_AE24
+8    |  D11   | LED D11       | PIN_T13| PIN_AE19
+9    |  D16   | LED D16       | PIN_AF6| PIN_AD20
+10   |  D12   | LED D12       | PIN_AE7| PIN_AF18
 
 ### Example Code
 
@@ -101,4 +101,53 @@ module pmod16led_1 (
     end
   end
 endmodule
+```
+#### VHDL
+
+This is Verilog test program pmod16led_1.v converted to VHDL as pmod16led_2.vhd
+
+```
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity pmod_16led_2 is
+port (
+       clk: in STD_LOGIC;
+  pmodled1: out STD_LOGIC_VECTOR(0 to 7) := "00000000";
+  pmodled2: out STD_LOGIC_VECTOR(0 to 7) := "00000000"
+);
+end pmod_16led_2;
+
+architecture arch of pmod_16led_2 is
+  signal clk_1hz: STD_LOGIC := '0';
+  signal  lednum1: STD_LOGIC_VECTOR(6 downto 0) := "0000000";
+  signal  lednum2: STD_LOGIC_VECTOR(7 downto 0) := "00000000";
+
+  begin
+    counter_p: process( clk, clk_1hz, lednum1, lednum2 )
+    variable count: INTEGER := 0;
+    begin
+      if( rising_edge(clk) ) then
+        count := count + 1;
+        if( count = 24999999 ) then
+          count := 0;
+          clk_1hz <= NOT clk_1hz;
+          lednum1 <= std_logic_vector( unsigned(lednum1) + 1);
+          lednum2 <= std_logic_vector( unsigned(lednum2) + 1);
+        end if;
+      end if;
+
+    pmodled1(0) <= clk_1hz;
+    pmodled1(1) <= lednum1(6);
+    pmodled1(2) <= lednum1(5);
+    pmodled1(3) <= lednum1(4);
+    pmodled1(4) <= lednum1(3);
+    pmodled1(5) <= lednum1(2);
+    pmodled1(6) <= lednum1(1);
+    pmodled1(7) <= lednum1(0);
+
+    pmodled2 <= lednum2;
+  end process counter_p;
+end arch;
 ```
