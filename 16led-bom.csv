@@ -1,0 +1,6 @@
+Manufacturer Part Number,Manufacturer,Digi-Key Part Number,Reference,Quantity,Description
+RMCF2010JT1K20,Stackpole Electronics Inc,RMCF2010JT1K20CT-ND ,R1-16,16,1K2 RESISTOR SMD 2010 (5025 Metric) see LED type
+RC2010JK-07220RL,Yageo,YAG3386CT-ND,R1-16,16,220 RESISTOR SMD 2010 (5025 Metric) see LED type
+SML-012WT,Rohm Semiconductor,"N/A, alternate below",D1-D16,16,LED YELLOW CLEAR SMD 1208 (3020) 280mcd = 1K resistor
+5973401507F,Dialight,350-2435-1-ND ,D1-D16,16,LED YELLOW CLEAR SMD 1208 (3020) 6.3mcd = 220 resistor
+PEC20DBAN,Sullins Connector Solutions,S2112E-20-ND,"J1,J2",1,CONN HEADER R/A 40POS 2.54MM cut to size
