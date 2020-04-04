@@ -1,4 +1,4 @@
-17139956429366312
+17151068343219989
 01_FM4DD
 7SEG-OSL40391
 4 digit 7 segment LED OptoSupply OSL40391 (0.390", 10.16mm)
@@ -8,11 +8,25 @@
 16
 01_FM4DD
 7SEG_CS533SR-A
-2-digit 7 segment LED display 18-DIP (0.600", 15.24mm)
-Double digit seven segment LED display
+3-digit 7 segment LED display 18-DIP (0.600", 15.24mm) Common Cathode
+Three digit seven segment LED display
 0
 12
 12
+01_FM4DD
+7SEG_GL9D03M
+single-digit 7 segment LED display 10-DIP (0.600", 10.16mm) Common Anode
+Double digit seven segment LED display
+0
+10
+10
+01_FM4DD
+7SEG_LDD-E302NI
+single-digit 7 segment LED display 10-DIP (0.600", 10.16mm) Common Anode
+Double digit seven segment LED display
+0
+10
+10
 01_FM4DD
 7SEG_LTD-6910HR
 2-digit 7 segment LED display 18-DIP (0.600", 15.24mm)
@@ -63,6 +77,20 @@ TFT LCD ILI9341 Adafruit
 40
 40
 01_FM4DD
+ADA-35-TFT-2050
+3.5" TFT LCD with Touchscreen Breakout Board w/MicroSD Socket - HX8357D
+TFT LCD ILI9341 Adafruit
+0
+40
+40
+01_FM4DD
+ADA-35-TFT-2050-no-ears
+3.5" TFT LCD with Touchscreen Breakout Board w/MicroSD Socket - HX8357D
+TFT LCD ILI9341 Adafruit
+0
+40
+40
+01_FM4DD
 ADA-DS3231
 footprint for the Sunhayato MM-TXS05 I2C sensor module, LSM303D magnetometer
 sensor, magnetormeter, LSM303D, module, I2C, LSM303D
@@ -75,11 +103,18 @@ footprint for the Adafruit LSM303DLHC magnetometer breakout module
 sensor, magnetormeter, LSM303DLHC, module, I2C, LSM303D
 0
 8
-7
+8
 01_FM4DD
 ADA-LSM303DLHC-BB
 footprint for the Adafruit LSM303DLHC magnetometer breakout module
 sensor, magnetormeter, LSM303DLHC, module, I2C, LSM303D
+0
+8
+8
+01_FM4DD
+ADA-PWRBOOST1000C
+footprint for the Sunhayato MM-TXS05 I2C sensor module, LSM303D magnetometer
+sensor, magnetormeter, LSM303D, module, I2C, LSM303D
 0
 8
 8
@@ -322,6 +357,13 @@ SOIC_clipProgSmall
 8
 8
 01_FM4DD
+SOP-28_7.5x17.9mm_P1.27mm
+SOP, 24 Pin (http://www.issi.com/WW/pdf/31FL3218.pdf#page=14), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SOP SO
+0
+28
+28
+01_FM4DD
 SPEAKER_8OHM_300MW
 
 
@@ -370,6 +412,13 @@ TM1637 THT DIP DIL PDIP 2.54mm 7.62mm 300mil
 0
 20
 20
+01_FM4DD
+TSSOP-28_4.4x9.7mm_P0.65mm
+http://www.ti.com/lit/ds/symlink/tlc5940.pdf
+
+0
+28
+28
 01_FM4DD
 TinyFPGA_BX
 TinyFPGA BX Footprint

@@ -5,7 +5,7 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "PMOD - 7Segment 4x"
+Title "PMOD 16LED - 16 LED outputs"
 Date ""
 Rev "V1.0"
 Comp "FM4DD"
@@ -816,6 +816,8 @@ Wire Wire Line
 	6550 2650 8600 2650
 Wire Wire Line
 	8600 2650 8600 2850
+Connection ~ 6550 2850
+Connection ~ 8600 2850
 Wire Bus Line
 	2650 3800 2650 4450
 Wire Bus Line
@@ -828,6 +830,4 @@ Wire Bus Line
 	6800 2950 6800 4600
 Wire Bus Line
 	4450 2500 4450 4150
-Connection ~ 6550 2850
-Connection ~ 8600 2850
 $EndSCHEMATC
