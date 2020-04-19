@@ -1,0 +1,3 @@
+This program is demonstrating the function of the 16LED PMOD under VHDL.  It implements a binary counter displayed on the pmod D2-8, and D9-16. D1 is pulsing a derived 1Hz clock. 
+
+The functionality has been converted from the Verilog program pmod_16led_1.v, tested on a Icebreaker v1.0 board, using the Linux open source workflow (yosys, nextpnr, and icestorm). Without an open source VHDL workflow, I am testing VHDL on a DE0-Nano-SoC board with Quartus Prime Version 17.1 Lite Edition on Windows.
