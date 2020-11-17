@@ -151,5 +151,8 @@ architecture arch of pmod_16led_2 is
   end process counter_p;
 end arch;
 ```
-<img src="images/icebreaker-16led.jpg" width="240px">
-16LED Pmod on a  iceBreaker board
+<img src="images/icebreaker-16led.jpg" width="480px">
+16LED Pmod on a iceBreaker board
+
+<img src="images/ulx3s-16led.jpg" width="480px">
+16LED Pmod on a 85K ULX3S board
